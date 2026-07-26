@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Category Totals</title>
+/css/style.css
+</head>
+<body>
+<h1>Category Totals</h1>
+
+<ul>
+<% totals.forEach(c => { %>
+<li><%= c.category %>: $<%= c.total %></li>
+<% }) %>
+</ul>
+
+</body>
+</html>
