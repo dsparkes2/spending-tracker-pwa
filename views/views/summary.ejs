@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Monthly Summary</title>
+/css/style.css
+</head>
+<body>
+<h1>Monthly Summary</h1>
+
+<ul>
+<% summary.forEach(item => { %>
+<li><%= item.month %>: $<%= item.total %></li>
+<% }) %>
+</ul>
+
+</body>
+</html>
