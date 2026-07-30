@@ -1,1 +1,17 @@
+
 <h1>Expenses</h1>
+
+<ul>
+  <% if (expenses && expenses.length > 0) { %>
+      <% expenses.forEach(exp => { %>
+          <li>
+              <strong>Amount:</strong> <%= exp.amount %> <br>
+              <strong>Category:</strong> <%= exp.category %> <br>
+              <strong>Notes:</strong> <%= exp.notes %> <br>
+              <strong>Date:</strong> <%= exp.date %>
+          </li>
+          <hr>
+      <% }) %>
+  <% } else { %>
+      <p>No expenses found.</p>
+  <% } %>
