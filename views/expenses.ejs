@@ -8,37 +8,41 @@
 </head>
 
 <body class="bg-light">
+
 <div class="container mt-4">
+
     <h2 class="text-center mb-4">Expenses</h2>
 
     /expenses/add
 
- <% if (expenses && expenses.length > 0) { %>
+    <% if (expenses && expenses.length > 0) { %>
         <% expenses.forEach(exp => { %>
+
             <div class="card mb-3 shadow-sm">
                 <div class="card-body">
 
                     <strong>Amount:</strong> <%= exp.amount %><br>
                     <strong>Category:</strong> <%= exp.category %><br>
                     <strong>Notes:</strong> <%= exp.notes %><br>
-                    <strong>Date:</strong> <%= exp.date %><br>
+                    <strong>Date:</strong> <%= exp.date.toDateString() %><br>
 
                     <% if (exp.receiptImage) { %>
-                        <hr>
+
+ <hr>
                         <strong>Receipt:</strong><br>
                         /uploads/<%= exp.receiptImage %>
                     <% } %>
 
                 </div>
             </div>
-        <% }) %>
 
- <% } else { %>
+        <% }) %>
+    <% } else { %>
         <p>No expenses found.</p>
     <% } %>
 
 </div>
+
 </body>
 </html>
-
 
