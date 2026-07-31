@@ -8,12 +8,11 @@
 </head>
 
 <body class="bg-light">
-
 <div class="container mt-4">
 
     <h2 class="text-center mb-4">Expenses</h2>
 
-    /expenses/add
+    /expenses/addAdd New Expense</a>
 
     <% if (expenses && expenses.length > 0) { %>
         <% expenses.forEach(exp => { %>
@@ -27,13 +26,12 @@
                     <strong>Date:</strong> <%= exp.date.toDateString() %><br>
 
                     <% if (exp.receiptImage) { %>
-
- <hr>
+                        <hr>
                         <strong>Receipt:</strong><br>
                         /uploads/<%= exp.receiptImage %>
                     <% } %>
 
-                </div>
+      </div>
             </div>
 
         <% }) %>
@@ -42,7 +40,6 @@
     <% } %>
 
 </div>
-
 </body>
 </html>
 
