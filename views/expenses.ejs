@@ -1,45 +1,77 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Expenses</title>
-    https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css  
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Expenses</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 </head>
 
 <body class="bg-light">
+
 <div class="container mt-4">
 
     <h2 class="text-center mb-4">Expenses</h2>
 
-    /expenses/addAdd New Expense</a>
+    <div class="text-end mb-3">
+        <a href="/expenses/add" class="btn btn-primary">
+            Add New Expense
+        </a>
+    </div>
 
     <% if (expenses && expenses.length > 0) { %>
+
         <% expenses.forEach(exp => { %>
 
-            <div class="card mb-3 shadow-sm">
+            <div class="card shadow-sm mb-3">
                 <div class="card-body">
 
-                    <strong>Amount:</strong> <%= exp.amount %><br>
-                    <strong>Category:</strong> <%= exp.category %><br>
-                    <strong>Notes:</strong> <%= exp.notes %><br>
-                    <strong>Date:</strong> <%= exp.date.toDateString() %><br>
+                    <h5 class="card-title">
+                        $<%= exp.amount %>
+                    </h5>
+
+                    <p class="mb-1">
+                        <strong>Category:</strong>
+                        <%= exp.category %>
+                    </p>
+
+                    <p class="mb-1">
+                        <strong>Notes:</strong>
+                        <%= exp.notes %>
+                    </p>
+
+                    <p class="mb-3">
+                        <strong>Date:</strong>
+                        <%= new Date(exp.date).toDateString() %>
+                    </p>
 
                     <% if (exp.receiptImage) { %>
-                        <hr>
-                        <strong>Receipt:</strong><br>
-                        /uploads/<%= exp.receiptImage %>
+
+                        <img
+                            src="/uploads/<%= exp.receiptImage %>"
+                            class="img-fluid rounded"
+                            style="max-width:250px;">
+
                     <% } %>
 
-      </div>
+                </div>
             </div>
 
         <% }) %>
+
     <% } else { %>
-        <p>No expenses found.</p>
+
+        <div class="alert alert-info">
+            No expenses found.
+        </div>
+
     <% } %>
 
 </div>
+
 </body>
 </html>
-
