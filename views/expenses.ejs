@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Expenses</title>
 
@@ -11,9 +11,9 @@
         rel="stylesheet">
 </head>
 
-<body class="bg-light">
+<body>
 
-<div class="container mt-4">
+<div class="container py-4">
 
     <h2 class="text-center mb-4">Expenses</h2>
 
@@ -31,22 +31,38 @@
                 <div class="card-body">
 
                     <h5 class="card-title">
-                        $<%= exp.amount %>
+                        $<%= Number(exp.amount || 0).toFixed(2) %>
                     </h5>
 
                     <p class="mb-1">
                         <strong>Category:</strong>
-                        <%= exp.category %>
+                        <%= exp.budgetCategory ? exp.budgetCategory.name : "Not assigned" %>
                     </p>
 
                     <p class="mb-1">
-                        <strong>Notes:</strong>
-                        <%= exp.notes %>
+                        <strong>Budget:</strong>
+                        <% if (exp.budget) { %>
+                            <%= exp.budget.month %>/<%= exp.budget.year %>
+                        <% } else { %>
+                            Not assigned
+                        <% } %>
                     </p>
+
+                    <p class="mb-1">
+                        <strong>Entered by:</strong>
+                        <%= exp.user ? exp.user.username : "Unknown" %>
+                    </p>
+
+                    <% if (exp.notes) { %>
+                        <p class="mb-1">
+                            <strong>Notes:</strong>
+                            <%= exp.notes %>
+                        </p>
+                    <% } %>
 
                     <p class="mb-3">
                         <strong>Date:</strong>
-                        <%= new Date(exp.date).toDateString() %>
+                        <%= exp.date ? new Date(exp.date).toDateString() : "No date" %>
                     </p>
 
                     <% if (exp.receiptImage) { %>
@@ -54,7 +70,8 @@
                         <img
                             src="/uploads/<%= exp.receiptImage %>"
                             class="img-fluid rounded"
-                            style="max-width:250px;">
+                            style="max-width:250px;"
+                            alt="Receipt">
 
                     <% } %>
 
