@@ -35,3 +35,26 @@ exports.register = async (req, res) => {
         res.status(500).send('Something went wrong while creating your account.');
     }
 };
+exports.login = async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        const user = await User.findOne({ username });
+
+        if (!user) {
+            return res.send('Invalid username or password.');
+        }
+
+        const passwordMatches = await bcrypt.compare(password, user.password);
+
+        if (!passwordMatches) {
+            return res.send('Invalid username or password.');
+        }
+
+        res.send('Login successful!');
+
+    } catch (error) {
+        console.error('Login error:', error);
+        res.status(500).send('Something went wrong while logging in.');
+    }
+};
