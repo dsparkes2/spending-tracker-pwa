@@ -51,7 +51,8 @@ exports.login = async (req, res) => {
             return res.send('Invalid username or password.');
         }
 
-        res.send('Login successful!');
+        req.session.userId = user._id;
+res.send('Login successful!');
 
     } catch (error) {
         console.error('Login error:', error);
