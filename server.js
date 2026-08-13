@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const path = require('path');
 const session = require('express-session');
 require('dotenv').config();
-
 const app = express();
+app.set('trust proxy', 1);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
