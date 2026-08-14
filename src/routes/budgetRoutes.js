@@ -2,5 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/budgetController');
-router.get('/', controller.getBudget);
+const authMiddleware = require('../middleware/authMiddleware');
+
+router.get('/', authMiddleware, controller.getBudget);
+
 module.exports = router;
