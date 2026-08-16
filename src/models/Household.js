@@ -8,6 +8,13 @@ const HouseholdSchema = new mongoose.Schema(
             trim: true
         },
 
+        code: {
+            type: String,
+            required: true,
+            unique: true,
+            trim: true
+        },
+
         createdBy: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
