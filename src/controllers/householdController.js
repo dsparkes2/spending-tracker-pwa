@@ -22,3 +22,6 @@ exports.createHousehold = async (req, res) => {
 
     res.redirect("/expenses");
 };
+exports.joinHouseholdPage = (req, res) => {
+    res.render("household-join");
+};
