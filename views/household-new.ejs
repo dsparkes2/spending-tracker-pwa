@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start a New Household Budget</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <h1 class="mb-4">Start a New Household Budget</h1>
+
+    <p>
+        Create a household budget that you can share with your spouse or partner.
+    </p>
+
+    <form method="POST" action="/household/new">
+
+        <div class="mb-3">
+            <label for="name" class="form-label">
+                Household Name
+            </label>
+
+            <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Example: Smith Family Budget"
+                required
+            >
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Create Household
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
