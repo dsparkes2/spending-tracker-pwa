@@ -25,7 +25,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use('/auth', require('./src/routes/authRoutes'));
 app.use('/expenses', require('./src/routes/expenseRoutes'));
 app.use('/budget', require('./src/routes/budgetRoutes'));
-
+app.use('/household', require('./src/routes/householdRoutes'));
 app.get('/', (req, res) => {
     res.redirect('/expenses');
 });
