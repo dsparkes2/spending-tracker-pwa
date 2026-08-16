@@ -6,4 +6,5 @@ const authMiddleware = require("../middleware/authMiddleware");
 router.get("/setup", authMiddleware, controller.setupPage);
 router.get("/new", authMiddleware, controller.newHouseholdPage);
 router.post("/new", authMiddleware, controller.createHousehold);
+router.get("/join", authMiddleware, controller.joinHouseholdPage);
 module.exports = router;
