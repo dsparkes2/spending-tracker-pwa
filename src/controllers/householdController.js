@@ -21,7 +21,7 @@ exports.createHousehold = async (req, res) => {
     user.household = household._id;
     await user.save();
 
-    res.redirect("/expenses");
+    res.render("household-created", { household });
 };
 exports.joinHouseholdPage = (req, res) => {
     res.render("household-join");
