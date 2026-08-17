@@ -11,6 +11,7 @@ exports.createHousehold = async (req, res) => {
 
     const household = new Household({
         name: req.body.name,
+        code: Math.random().toString(36).substring(2, 8).toUpperCase(),
         createdBy: user._id,
         members: [user._id]
     });
