@@ -36,3 +36,10 @@ exports.newBudgetPage = (req, res) => {
 
     res.render('budget-new', { year, month });
 };
+exports.budgetCategoriesPage = (req, res) => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+
+    res.render('budget-categories', { year, month });
+};
