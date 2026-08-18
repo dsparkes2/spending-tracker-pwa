@@ -43,3 +43,6 @@ exports.budgetCategoriesPage = (req, res) => {
 
     res.render('budget-categories', { year, month });
 };
+exports.saveBudgetCategories = (req, res) => {
+    res.send("Save Budget Categories controller is connected.");
+};
