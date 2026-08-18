@@ -1,6 +1,6 @@
 const Budget = require('../models/Budget');
 const User = require('../models/User');
-
+const BudgetCategory = require('../models/BudgetCategory');
 exports.getBudget = async (req, res) => {
     try {
         const user = await User.findById(req.session.userId);
