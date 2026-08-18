@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Categories</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <h1>
+        Set Up Your
+        <%= new Date(year, month - 1).toLocaleString('default', { month: 'long' }) %>
+        <%= year %> Categories
+    </h1>
+
+    <p class="mt-4">
+        Choose the categories you want to use this month and set a monthly spending limit.
+    </p>
+
+    <div class="mt-4">
+
+        <div class="mb-3">
+            <label class="form-label">Groceries</label>
+            <input type="number" class="form-control" placeholder="Monthly limit">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Gas</label>
+            <input type="number" class="form-control" placeholder="Monthly limit">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Utilities</label>
+            <input type="number" class="form-control" placeholder="Monthly limit">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Dining Out</label>
+            <input type="number" class="form-control" placeholder="Monthly limit">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Entertainment</label>
+            <input type="number" class="form-control" placeholder="Monthly limit">
+        </div>
+
+    </div>
+
+    <button class="btn btn-primary mt-3">
+        Save Budget Categories
+    </button>
+
+</div>
+
+</body>
+</html>
