@@ -29,3 +29,10 @@ exports.getBudget = async (req, res) => {
         res.status(500).send('Unable to load budget.');
     }
 };
+exports.newBudgetPage = (req, res) => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+
+    res.render('budget-new', { year, month });
+};
