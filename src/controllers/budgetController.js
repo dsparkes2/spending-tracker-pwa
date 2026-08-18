@@ -23,7 +23,7 @@ exports.getBudget = async (req, res) => {
             month
         });
 
-        res.render('budget', { budget });
+       res.render('budget', { budget, year, month });
     } catch (error) {
         console.error('Error loading budget:', error);
         res.status(500).send('Unable to load budget.');
