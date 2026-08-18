@@ -25,40 +25,76 @@
         Choose the categories you want to use this month and set a monthly spending limit.
     </p>
 
-    <div class="mt-4">
+    <form method="POST" action="/budget/categories" class="mt-4">
 
         <div class="mb-3">
             <label class="form-label">Groceries</label>
-            <input type="number" class="form-control" placeholder="Monthly limit">
+            <input
+                type="number"
+                class="form-control"
+                name="groceries"
+                placeholder="Monthly limit"
+                min="0"
+                step="0.01"
+            >
         </div>
 
         <div class="mb-3">
             <label class="form-label">Gas</label>
-            <input type="number" class="form-control" placeholder="Monthly limit">
+            <input
+                type="number"
+                class="form-control"
+                name="gas"
+                placeholder="Monthly limit"
+                min="0"
+                step="0.01"
+            >
         </div>
 
         <div class="mb-3">
             <label class="form-label">Utilities</label>
-            <input type="number" class="form-control" placeholder="Monthly limit">
+            <input
+                type="number"
+                class="form-control"
+                name="utilities"
+                placeholder="Monthly limit"
+                min="0"
+                step="0.01"
+            >
         </div>
 
         <div class="mb-3">
             <label class="form-label">Dining Out</label>
-            <input type="number" class="form-control" placeholder="Monthly limit">
+            <input
+                type="number"
+                class="form-control"
+                name="diningOut"
+                placeholder="Monthly limit"
+                min="0"
+                step="0.01"
+            >
         </div>
 
         <div class="mb-3">
             <label class="form-label">Entertainment</label>
-            <input type="number" class="form-control" placeholder="Monthly limit">
+            <input
+                type="number"
+                class="form-control"
+                name="entertainment"
+                placeholder="Monthly limit"
+                min="0"
+                step="0.01"
+            >
         </div>
 
-    </div>
+        <button type="submit" class="btn btn-primary mt-3">
+            Save Budget Categories
+        </button>
 
-    <button class="btn btn-primary mt-3">
-        Save Budget Categories
-    </button>
+    </form>
 
 </div>
 
 </body>
 </html>
+
