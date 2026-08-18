@@ -6,4 +6,5 @@ const authMiddleware = require('../middleware/authMiddleware');
 
 router.get('/', authMiddleware, controller.getBudget);
 router.get('/new', authMiddleware, controller.newBudgetPage);
+router.get('/categories', authMiddleware, controller.budgetCategoriesPage);
 module.exports = router;
