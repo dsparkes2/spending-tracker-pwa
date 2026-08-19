@@ -43,6 +43,66 @@ exports.budgetCategoriesPage = (req, res) => {
 
     res.render('budget-categories', { year, month });
 };
-exports.saveBudgetCategories = (req, res) => {
-    res.send("Save Budget Categories controller is connected.");
+exports.saveBudgetCategories = async (req, res) => {
+    try {
+        const user = await User.findById(req.session.userId);
+
+        if (!user) {
+            return res.redirect('/auth/login');
+        }
+
+        if (!user.household) {
+            return res.send('Your account is not connected to a household yet.');
+        }
+
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+
+        let budget = await Budget.findOne({
+            household: user.household,
+            year,
+            month
+        });
+
+        if (!budget) {
+            budget = new Budget({
+                household: user.household,
+                year,
+                month,
+                status: 'Active'
+            });
+
+            await budget.save();
+        }
+
+        const categories = [
+            { name: 'Groceries', value: req.body.groceries },
+            { name: 'Gas', value: req.body.gas },
+            { name: 'Utilities', value: req.body.utilities },
+            { name: 'Dining Out', value: req.body.diningOut },
+            { name: 'Entertainment', value: req.body.entertainment }
+        ];
+
+        for (const category of categories) {
+            const amount = Number(category.value);
+
+            if (!category.value || amount <= 0) {
+                continue;
+            }
+
+            await BudgetCategory.create({
+                budget: budget._id,
+                name: category.name,
+                monthlyLimit: amount,
+                isCustom: false,
+                isActive: true
+            });
+        }
+
+        res.redirect('/budget');
+    } catch (error) {
+        console.error('Error saving budget categories:', error);
+        res.status(500).send('Unable to save budget categories.');
+    }
 };
