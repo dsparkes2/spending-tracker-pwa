@@ -8,4 +8,5 @@ router.get('/', authMiddleware, controller.getBudget);
 router.get('/new', authMiddleware, controller.newBudgetPage);
 router.get('/categories', authMiddleware, controller.budgetCategoriesPage);
 router.post('/categories', authMiddleware, controller.saveBudgetCategories);
+router.get('/edit', authMiddleware, controller.editBudgetPage);
 module.exports = router;
