@@ -65,16 +65,17 @@ exports.saveBudgetCategories = async (req, res) => {
             month
         });
 
-        if (!budget) {
-            budget = new Budget({
-                household: user.household,
-                year,
-                month,
-                status: 'Active'
-            });
+       if (!budget) {
+           budget = new Budget({
+             household: user.household,
+             year,
+             month,
+             monthlyLimit: Number(req.body.monthlyLimit),
+             status: 'Active'
+        });
 
-            await budget.save();
-        }
+        await budget.save();
+       }
 
         const categories = [
             { name: 'Groceries', value: req.body.groceries },
