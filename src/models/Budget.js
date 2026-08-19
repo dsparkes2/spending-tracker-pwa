@@ -19,7 +19,11 @@ const BudgetSchema = new mongoose.Schema(
       min: 1,
       max: 12
     },
-
+    monthlyLimit: {
+      type: Number,
+      required: true,
+      min: 0
+    },
     status: {
       type: String,
       enum: ["Draft", "Active", "Closed"],
