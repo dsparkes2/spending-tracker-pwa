@@ -26,14 +26,22 @@
         <a href="/budget/new" class="btn btn-primary mt-2">
             Start This Month's Budget
         </a>
+<% } else { %>
+    <p class="mt-4">
+        Your budget is already set up for this month.
+    </p>
 
-    <% } else { %>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h2 class="card-title">Monthly Spending Limit</h2>
 
-        <p class="mt-4">
-            Your budget is already set up for this month.
-        </p>
+            <p class="fs-3">
+                $<%= Number(budget.monthlyLimit || 0).toFixed(2) %>
+            </p>
+        </div>
+    </div>
 
-    <% } %>
+<% } %>
 
 </div>
 
