@@ -9,4 +9,5 @@ router.get('/new', authMiddleware, controller.newBudgetPage);
 router.get('/categories', authMiddleware, controller.budgetCategoriesPage);
 router.post('/categories', authMiddleware, controller.saveBudgetCategories);
 router.get('/edit', authMiddleware, controller.editBudgetPage);
+router.post('/edit', authMiddleware, controller.updateBudget);
 module.exports = router;
