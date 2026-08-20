@@ -145,3 +145,47 @@ exports.editBudgetPage = async (req, res) => {
         res.status(500).send('Unable to load budget edit page.');
     }
 };
+
+exports.updateBudget = async (req, res) => {
+    try {
+        const user = await User.findById(req.session.userId);
+
+        if (!user) {
+            return res.redirect('/auth/login');
+        }
+
+        if (!user.household) {
+            return res.send('Your account is not connected to a household yet.');
+        }
+
+        const monthlyLimit = Number(req.body.monthlyLimit);
+
+        if (!Number.isFinite(monthlyLimit) || monthlyLimit < 0) {
+            return res.send('Please enter a valid monthly spending limit.');
+        }
+
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+
+        const budget = await Budget.findOne({
+            household: user.household,
+            year,
+            month
+        });
+
+        if (!budget) {
+            return res.redirect('/budget');
+        }
+
+        budget.monthlyLimit = monthlyLimit;
+
+        await budget.save();
+
+        res.redirect('/budget');
+
+    } catch (error) {
+        console.error('Error updating monthly budget:', error);
+        res.status(500).send('Unable to update monthly budget.');
+    }
+};
