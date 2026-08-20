@@ -15,7 +15,10 @@
 
 <div class="container mt-5">
 
-    <h1><%= new Date(year, month - 1).toLocaleString('default', { month: 'long' }) %> <%= year %> Budget</h1>
+    <h1>
+        <%= new Date(year, month - 1).toLocaleString('default', { month: 'long' }) %>
+        <%= year %> Budget
+    </h1>
 
     <% if (!budget) { %>
 
@@ -26,24 +29,32 @@
         <a href="/budget/new" class="btn btn-primary mt-2">
             Start This Month's Budget
         </a>
-<% } else { %>
-    <p class="mt-4">
-        Your budget is already set up for this month.
-    </p>
 
-    <div class="card mt-4">
-        <div class="card-body">
-            <h2 class="card-title">Monthly Spending Limit</h2>
+    <% } else { %>
 
-            <p class="fs-3">
-                $<%= Number(budget.monthlyLimit || 0).toFixed(2) %>
-            </p>
+        <p class="mt-4">
+            Your budget is already set up for this month.
+        </p>
+
+        <div class="card mt-4">
+            <div class="card-body">
+                <h2 class="card-title">Monthly Spending Limit</h2>
+
+                <p class="fs-3">
+                    $<%= Number(budget.monthlyLimit || 0).toFixed(2) %>
+                </p>
+            </div>
         </div>
-    </div>
-    <a href="/budget/edit" class="btn btn-outline-primary mt-3">
-        Change Monthly Limit
-    </a>
-<% } %>
+
+        <a href="/budget/edit" class="btn btn-outline-primary mt-3">
+            Change Monthly Limit
+        </a>
+
+        <a href="/budget/manage-categories" class="btn btn-outline-primary mt-3 ms-2">
+            Manage Budget Categories
+        </a>
+
+    <% } %>
 
 </div>
 
