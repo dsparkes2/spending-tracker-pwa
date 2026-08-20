@@ -189,3 +189,47 @@ exports.updateBudget = async (req, res) => {
         res.status(500).send('Unable to update monthly budget.');
     }
 };
+
+exports.manageCategoriesPage = async (req, res) => {
+    try {
+        const user = await User.findById(req.session.userId);
+
+        if (!user) {
+            return res.redirect('/auth/login');
+        }
+
+        if (!user.household) {
+            return res.send('Your account is not connected to a household yet.');
+        }
+
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+
+        const budget = await Budget.findOne({
+            household: user.household,
+            year,
+            month
+        });
+
+        if (!budget) {
+            return res.redirect('/budget');
+        }
+
+        const categories = await BudgetCategory.find({
+            budget: budget._id,
+            isActive: true
+        }).sort({ name: 1 });
+
+        res.render('budget-manage-categories', {
+            budget,
+            categories,
+            year,
+            month
+        });
+
+    } catch (error) {
+        console.error('Error loading budget categories:', error);
+        res.status(500).send('Unable to load budget categories.');
+    }
+};
