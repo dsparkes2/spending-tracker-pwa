@@ -233,3 +233,47 @@ exports.manageCategoriesPage = async (req, res) => {
         res.status(500).send('Unable to load budget categories.');
     }
 };
+
+exports.editCategoryPage = async (req, res) => {
+    try {
+        const user = await User.findById(req.session.userId);
+
+        if (!user) {
+            return res.redirect('/auth/login');
+        }
+
+        if (!user.household) {
+            return res.send('Your account is not connected to a household yet.');
+        }
+
+        const category = await BudgetCategory.findById(req.params.id);
+
+        if (!category) {
+            return res.send('Budget category not found.');
+        }
+
+        const budget = await Budget.findOne({
+            _id: category.budget,
+            household: user.household
+        });
+
+        if (!budget) {
+            return res.send('You do not have access to this budget category.');
+        }
+
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+
+        res.render('budget-category-edit', {
+            category,
+            budget,
+            year,
+            month
+        });
+
+    } catch (error) {
+        console.error('Error loading category edit page:', error);
+        res.status(500).send('Unable to load category edit page.');
+    }
+};
